@@ -27,7 +27,27 @@
       .words {
         padding: 10px;
       }
+      .button18 {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
+        text-align: center;
+        transition: all 0.2s;
+        color: #ffffff;
+        background-color: lightblue;
+      }
+      .button18:hover {
+        color: #000000;
+        background-color: #ffffff;
+      }
     </style>
+
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
   </head>
   <body>
@@ -38,10 +58,12 @@
           type="text"
           name="boggle"
           placeholder="abcdabcdabcdabcd"
+          onclick="this.select()"
           required
           autofocus
         />
         <button
+          class="button18"
           hx-post="/boggle/rob"
           hx-swap="innerHTML viewport:top"
           hx-target="#robbed_words"
