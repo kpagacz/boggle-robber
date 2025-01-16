@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f9;
+      }
+      .container {
+        text-align: center;
+      }
+      input[type="text"] {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      .words {
+        padding: 10px;
+      }
+    </style>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Enter Your BOGGLE</h1>
+      <form>
+        <input
+          type="text"
+          name="boggle"
+          placeholder="abcdabcdabcdabcd"
+          required
+          autofocus
+        />
+        <button
+          hx-post="/boggle/rob"
+          hx-swap="innerHTML viewport:top"
+          hx-target="#robbed_words"
+        >
+          ROB!
+        </button>
+      </form>
+      <div class="words" id="robbed_words"></div>
+    </div>
+  </body>
+</html>

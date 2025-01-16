@@ -78,7 +78,11 @@ impl Board {
                 rec(&mut vec![], x, y, &mut answer, &mut board);
             }
         }
-        answer.sort_unstable();
+        let mut answer = answer
+            .into_iter()
+            .filter(|x| x.len() > 2)
+            .collect::<Vec<String>>();
+        answer.sort_unstable_by_key(|word| (-(word.chars().count() as i32), word.clone()));
         answer.dedup();
 
         answer
