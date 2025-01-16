@@ -58,14 +58,14 @@ pub struct Boggle {
     boggle: String,
 }
 async fn boggle_rob(Form(boggle): Form<Boggle>) -> Result<impl IntoResponse, (StatusCode, String)> {
+    let boggle = boggle.boggle.to_lowercase();
     println!("{boggle:?}");
     let mut context = common_context();
-
     let response = HTTP_CLIENT
         .post(BACKEND_URL)
         .header("Content-Type", "application/json")
         .header("User-Agent", "BoggleRobber")
-        .body(json!(boggle.boggle).to_string())
+        .body(json!(boggle).to_string())
         .send()
         .await
         .map_err(|e| {
