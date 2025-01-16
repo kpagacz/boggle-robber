@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install build-essential libssl-dev pkg-config
+sudo apt install -y build-essential libssl-dev pkg-config nginx
 
 cp nginx.conf /etc/nginx/nginx.conf
 sudo nginx -s reload
