@@ -2,7 +2,7 @@
 
 sudo apt install -y build-essential libssl-dev pkg-config nginx
 
-cp nginx.conf /etc/nginx/nginx.conf
+sudo cp nginx.conf /etc/nginx/nginx.conf
 sudo nginx -s reload
 
 cd heist
