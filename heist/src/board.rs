@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::str::FromStr;
 use std::sync::LazyLock;
 
@@ -20,6 +20,8 @@ const NEIGHBOURS: [(usize, usize); 8] = [
     (1, 1),
 ];
 const VISITED: char = '$';
+static CHARS_ORDER: LazyLock<HashMap<char, i32>> =
+    LazyLock::new(|| HashMap::from_iter(("aąbcćdeęfghijklłmnoóprsśtuvwxyzźż".chars()).zip(1..)));
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Board {
@@ -35,9 +37,7 @@ impl FromStr for Board {
         let mut ans = [['0'; 4]; 4];
         for x in 0..4 {
             for y in 0..4 {
-                ans[x][y] = board
-                    .next()
-                    .ok_or_else(|| "Not enough letters in the boggle")?;
+                ans[x][y] = board.next().ok_or("Not enough letters in the boggle")?;
             }
         }
         Ok(Board { board: ans })
@@ -82,7 +82,14 @@ impl Board {
             .into_iter()
             .filter(|x| x.len() > 2)
             .collect::<Vec<String>>();
-        answer.sort_unstable_by_key(|word| (-(word.chars().count() as i32), word.clone()));
+        answer.sort_by_cached_key(|word| {
+            (
+                -(word.chars().count() as i32),
+                word.chars()
+                    .map(|letter| *CHARS_ORDER.get(&letter).unwrap())
+                    .collect::<Vec<i32>>(),
+            )
+        });
         answer.dedup();
 
         answer
