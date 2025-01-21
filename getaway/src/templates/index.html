@@ -4,80 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ROB BOGGLE</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f4f4f9;
-      }
-      .container {
-        text-align: center;
-      }
-      input[type="text"] {
-        width: 300px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-      }
-      .words {
-        padding: 10px;
-      }
-      .word {
-        padding: 0.5em;
-      }
-      .button18 {
-        display: inline-block;
-        padding: 0.35em 1.2em;
-        border: 0.1em;
-        margin: 0 0.3em 0.3em 0;
-        border-radius: 0.12em;
-        box-sizing: border-box;
-        text-decoration: none;
-        font-family: "Roboto", sans-serif;
-        font-weight: 300;
-        text-align: center;
-        transition: all 0.2s;
-        color: #ffffff;
-        background-color: lightblue;
-      }
-      .button18:hover {
-        color: #000000;
-        background-color: #ffffff;
-      }
-      tt {
-        font-size: 1.5rem;
-      }
-    </style>
-
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <div class="container">
-      <h1>Enter Your BOGGLE</h1>
-      <form>
-        <input
-          type="text"
-          name="boggle"
-          placeholder="abcdabcdabcdabcd"
-          onclick="this.select()"
-          required
-          autofocus
-        />
-        <button
-          class="button18"
-          hx-post="/boggle/rob"
-          hx-swap="innerHTML viewport:top"
-          hx-target="#robbed_words"
-        >
-          ROB!
-        </button>
-      </form>
-      <div class="words" id="robbed_words"></div>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto px-4 max-w-2xl space-y-4">
+      <div class="bg-white p-8 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">
+          Enter Your BOGGLE
+        </h1>
+        <form class="space-y-4">
+          <input
+            type="text"
+            name="boggle"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="abcdabcdabcdabcd"
+            onclick="this.select()"
+            required
+            autofocus
+          />
+          <button
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out"
+            hx-post="/boggle/rob"
+            hx-swap="outerHTML"
+            hx-target="#robbed_words"
+          >
+            ROB!
+          </button>
+        </form>
+      </div>
+      <div
+        class="w-full bg-white rounded-lg shadow-md leading-relaxed font-mono text-center"
+        id="robbed_words"
+      ></div>
     </div>
   </body>
 </html>

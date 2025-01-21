@@ -1,3 +1,8 @@
-{% for word in words %}
-<a href={{ "https://sjp.pl/" ~ word }}><tt class="word">{{word}}</tt></a>
-{% endfor %}
+<div
+  class="w-full bg-white rounded-lg shadow-md leading-relaxed font-mono text-center p-2"
+  id="robbed_words"
+>
+  {% for word in words %}
+    <a href={{ "https://sjp.pl/" ~ word }} class="text-gray-600 hover:text-gray-800" >{{word}}</tt>
+  {% endfor %}
+</div>
