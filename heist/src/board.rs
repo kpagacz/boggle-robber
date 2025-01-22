@@ -21,7 +21,7 @@ const NEIGHBOURS: [(usize, usize); 8] = [
 ];
 const VISITED: char = '$';
 static CHARS_ORDER: LazyLock<HashMap<char, i32>> =
-    LazyLock::new(|| HashMap::from_iter(("aąbcćdeęfghijklłmnoóprsśtuvwxyzźż".chars()).zip(1..)));
+    LazyLock::new(|| HashMap::from_iter(("aąbcćdeęfghijklłmnńoóprsśtuvwxyzźż".chars()).zip(1..)));
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Board {
